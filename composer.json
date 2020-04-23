@@ -24,6 +24,6 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "extra": {
-    "entrypoint": "BobDenOtter\\MyAwesomeExtension\\Extension"
+    "entrypoint": "IvoValchev\\ImageExtension\\Extension"
   }
 }
