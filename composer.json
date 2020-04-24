@@ -14,7 +14,8 @@
     "twig/twig": "^2.12 | ^3.0"
   },
   "require-dev": {
-    "bolt/core": "^4.0.0"
+    "bolt/core": "^4.0.0",
+    "symplify/easy-coding-standard": "^7.2"
   },
   "autoload": {
     "psr-4": {
