@@ -3,8 +3,3 @@ default:
   widths: [ 340, 680, 1260 ]
   class: 'responsive-image'
   sizes: ["(min-width: 1260px) 1260px", "(min-width: 780px) 680px", "(min-width: 480px) 340px", "100vw"]
-
-for_blogpost:
-  widths: [ 340, 680, 960, 1260 ]
-  class: 'blog-image'
-  sizes: ["(min-width: 1260px) 1260px", "(min-width: 780px) 680px", "(min-width: 480px) 340px", "100vw"]
