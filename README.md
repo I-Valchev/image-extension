@@ -1,5 +1,5 @@
 # Bolt CMS Image Extension
-ia
+
 Responsive image extension for Bolt CMS using sizes and srcset.
 
 ## Installation
