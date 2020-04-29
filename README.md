@@ -41,4 +41,10 @@ Then, to use the custom config in twig:
 {{ responsive_image(myimage, 'default', {'widths': [400, 500, 600, 700] }) }}
 ```
 
+Alternatively, using Twig named arguments:
+
+```twig
+{{ responsive_image(myimage, options={'widths': [400, 500, 600, 700]}) }}
+```
+
 Note: In the example above, any config option that is not supplied will be defauled to the config name `'default'`.
