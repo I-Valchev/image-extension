@@ -47,8 +47,12 @@ class ImageExtension extends AbstractExtension
         ];
     }
 
-    public function getResponsiveImage(Imagefield $image, string $configName = 'default', array $options = []): string
+    public function getResponsiveImage(?Imagefield $image = null, string $configName = 'default', array $options = []): ?string
     {
+        if (! $image) {
+            return null;
+        }
+
         $config = $this->getConfig($configName)->merge($options);
 
         $srcset = $this->getSrcset($image, $config);
