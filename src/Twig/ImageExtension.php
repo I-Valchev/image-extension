@@ -93,7 +93,7 @@ class ImageExtension extends AbstractExtension
         $originalWidth = $lm->getWidth();
         $originalHeight = $lm->getHeight();
 
-        return (int) $width * $originalHeight / $originalWidth;
+        return (int) ($width * $originalHeight / $originalWidth);
     }
 
     private function getConfig(string $configName): Collection
