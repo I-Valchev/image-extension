@@ -25,6 +25,8 @@ Example custom configuration:
 ```
 for_blogpost:
      widths: [ 340, 680, 960, 1260 ]
+     heights: [ 300, 600, 840, 1100 ] # Optional. If heights is not set, the height will be relative to the width.
+     fit: default # Uses Bolt's `thumbnail` fit options. Pass an array, e.g. [ crop, fit, crop ] to adjust for different widths.
      class: 'blog-image'
      sizes: ["(min-width: 1260px) 1260px", "(min-width: 780px) 680px", "(min-width: 480px) 340px", "100vw"]
 ```
