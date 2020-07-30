@@ -1,5 +1,7 @@
 ### The default config
 default:
   widths: [ 340, 680, 1260 ]
+  heights: [ 300, 600, 1100 ] # Optional. If heights is not set, the height will be relative to the width.
+  fit: default # Bolt Thumbnail fit. Either one value for all widths, or an array. E.g. [ fit, crop, fit ]
   class: 'responsive-image'
   sizes: ["(min-width: 1260px) 1260px", "(min-width: 780px) 680px", "(min-width: 480px) 340px", "100vw"]

@@ -73,14 +73,24 @@ class ImageExtension extends AbstractExtension
     private function getSrcset(Imagefield $image, Collection $config): string
     {
         $widths = collect($config->get('widths', []));
+        $heights = collect($config->get('heights', []));
+        $fits = $config->get('fit', null);
+        if (is_iterable($fits)) {
+            $fits = collect($fits);
+        }
 
         $lm = $image->getLinkedMedia($this->mediaRepository);
         $location = $lm->getLocation();
         $path = $lm->getPath();
 
-        $srcset = $widths->reduce(function (array $carry, int $width) use ($image, $location, $path) {
-            $height = $this->getRelativeHeight($image, $width);
-            $carry[] = $this->imageExtension->thumbnail($image, $width, $height, $location, $path, null) . ' ' . $width . 'w';
+        $srcset = $widths->reduce(function (array $carry, int $width) use ($image, $location, $path, $heights, $fits) {
+            // Get height from config, or calculate relative
+            $height = $heights->shift() ?? $this->getRelativeHeight($image, $width);
+
+            // Get fit from config (either array or string)
+            $fit = is_iterable($fits) ? $fits->shift() : $fits;
+
+            $carry[] = $this->imageExtension->thumbnail($image, $width, $height, $location, $path, $fit) . ' ' . $width . 'w';
             return $carry;
         }, []);
 
