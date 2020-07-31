@@ -53,6 +53,11 @@ class ImageExtension extends AbstractExtension
             return null;
         }
 
+        if ($this->getExtension($image) === 'svg') {
+            // We cannot resize SVGs. Let Bolt handle how a regular svg is displayed.
+            return $this->imageExtension->showImage($image);
+        }
+
         $config = $this->getConfig($configName)->merge($options);
 
         $srcset = $this->getSrcset($image, $config);
@@ -116,5 +121,14 @@ class ImageExtension extends AbstractExtension
         }
 
         return collect($this->config);
+    }
+
+    private function getExtension(ImageField $image): ?string
+    {
+        if (! array_key_exists('filename', $image->getValue())) {
+            return null;
+        }
+
+        return pathinfo($image->getValue()['filename'], PATHINFO_EXTENSION);
     }
 }
