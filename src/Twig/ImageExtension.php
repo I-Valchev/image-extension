@@ -113,12 +113,10 @@ class ImageExtension extends AbstractExtension
 
     private function getConfig(string $configName): Collection
     {
-        if ($this->config === null) {
-            /** @var Extension $extension */
-            $extension = $this->registry->getExtension(\IvoValchev\ImageExtension\Extension::class);
-            $config = $extension->getConfig();
-            $this->config = $config->has($configName) ? $config->get($configName) : $config->get('default', []);
-        }
+        /** @var Extension $extension */
+        $extension = $this->registry->getExtension(\IvoValchev\ImageExtension\Extension::class);
+        $config = $extension->getConfig();
+        $this->config = $config->has($configName) ? $config->get($configName) : $config->get('default', []);
 
         return collect($this->config);
     }
