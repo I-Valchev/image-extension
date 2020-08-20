@@ -50,3 +50,24 @@ Alternatively, using Twig named arguments:
 ```
 
 Note: In the example above, any config option that is not supplied will be defaulted to the config name `'default'`.
+
+
+### How to use `responsive_image` with images inside Set fields
+
+If you get the following error message
+```
+Argument 1 passed to IvoValchev\ImageExtension\Twig\ImageExtension::getResponsiveImage() must be an instance of Bolt\Entity\Field\ImageField or null, array given
+```
+it probably means that you are trying to pass the image value, rather than the image itself to the `responsive_image` function. This happens most often inside a set.
+
+If you bump into this, update your twig template:
+
+From using a set like this:
+```twig
+{{ responsive_image(section.photo) }} {# given section is a field of type set #}
+```
+
+To this:
+```twig
+{{ responsive_image(section.value.photo) }} {# note the `.value` #}
+```
