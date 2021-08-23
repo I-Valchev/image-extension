@@ -86,16 +86,15 @@ class ImageExtension extends AbstractExtension
 
         $lm = $image->getLinkedMedia($this->mediaRepository);
         $location = $lm->getLocation();
-        $path = $lm->getPath();
 
-        $srcset = $widths->reduce(function (array $carry, int $width) use ($image, $location, $path, $heights, $fits) {
+        $srcset = $widths->reduce(function (array $carry, int $width) use ($image, $location, $heights, $fits) {
             // Get height from config, or calculate relative
             $height = $heights->shift() ?? $this->getRelativeHeight($image, $width);
 
             // Get fit from config (either array or string)
             $fit = is_iterable($fits) ? $fits->shift() : $fits;
 
-            $carry[] = $this->imageExtension->thumbnail($image, $width, $height, $location, $path, $fit) . ' ' . $width . 'w';
+            $carry[] = $this->imageExtension->thumbnail($image, $width, $height, $location, null, $fit) . ' ' . $width . 'w';
             return $carry;
         }, []);
 
