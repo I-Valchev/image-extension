@@ -72,7 +72,7 @@ class ImageExtension extends AbstractExtension
 
     private function getSizes(Collection $config): string
     {
-        return implode($config->get('sizes', []), ',');
+        return implode(',',$config->get('sizes', []));
     }
 
     private function getSrcset(Imagefield $image, Collection $config): string
@@ -85,7 +85,12 @@ class ImageExtension extends AbstractExtension
         }
 
         $lm = $image->getLinkedMedia($this->mediaRepository);
-        $location = $lm->getLocation();
+        
+        if (empty($lm)) {
+            $location='files';
+        } else {
+            $location = $lm->getLocation();
+        }
 
         $srcset = $widths->reduce(function (array $carry, int $width) use ($image, $location, $heights, $fits) {
             // Get height from config, or calculate relative
