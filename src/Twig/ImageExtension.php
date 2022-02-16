@@ -72,7 +72,7 @@ class ImageExtension extends AbstractExtension
 
     private function getSizes(Collection $config): string
     {
-        return implode(',',$config->get('sizes', []));
+        return implode(',', $config->get('sizes', []));
     }
 
     private function getSrcset(Imagefield $image, Collection $config): string
